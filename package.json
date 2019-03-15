@@ -1,0 +1,15 @@
+{
+    "name": "hust-network-utils",
+    "version": "1.0.0",
+    "description": "A collection of utils for happy web-surfing at HUST.",
+    "main": "index.js",
+    "author": "maniacata",
+    "license": "MIT",
+    "dependencies": {
+        "form-data": "^2.3.3",
+        "got": "^9.6.0",
+        "jsdom": "^14.0.0",
+        "tesseract.js": "^1.0.14",
+        "tough-cookie": "^3.0.1"
+    }
+}

@@ -1,0 +1,4 @@
+node_modules
+*.traineddata
+data/
+yarn-error.log

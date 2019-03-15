@@ -1,0 +1,21 @@
+{
+    "user": {
+        "username": "U2018XXXXX",
+        "password": "PASSWORD",
+        "defaultFee": "1"
+    },
+    "site": {
+        "hub": {
+            "publicKey": [
+                "10001",
+                "89b7ad1090fe776044d393a097e52f99fc3f97690c90215ecb01f1b3dfc4d8b0226a4b16f51a884e0c1545180eb40365dbec848cc0df52f515512e2317bf9d82b6f4c9cafcc94082fd86c97e77a4d3aa44cba54f8d94f5757ce3cc82c3adf31082738cfe531b4b4675f35a0c8401745dbed15c92d0747c6349915378fff22b9b"
+            ]
+        },
+        "eportal": {
+            "publicKey": [
+                "10001",
+                "9c2899b8ceddf9beafad2db8e431884a79fd9b9c881e459c0e1963984779d6612222cee814593cc458845bbba42b2d3474c10b9d31ed84f256c6e3a1c795e68e18585b84650076f122e763289a4bcb0de08762c3ceb591ec44d764a69817318fbce09d6ecb0364111f6f38e90dc44ca89745395a17483a778f1cc8dc990d87c3"
+            ]
+        }
+    }
+}
