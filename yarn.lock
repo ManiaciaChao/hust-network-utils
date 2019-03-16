@@ -300,6 +300,13 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
+gbk-string@^0.1.0:
+  version "0.1.0"
+  resolved "http://registry.npm.taobao.org/gbk-string/download/gbk-string-0.1.0.tgz#7d4a0b1d095e07a6e39b191a8fd350f1c2cf8992"
+  integrity sha1-fUoLHQleB6bjmxkaj9NQ8cLPiZI=
+  dependencies:
+    iconv-lite "^0.4.19"
+
 get-stream@^4.0.0, get-stream@^4.1.0:
   version "4.1.0"
   resolved "http://registry.npm.taobao.org/get-stream/download/get-stream-4.1.0.tgz#c1b255575f3dc21d59bfc79cd3d2b46b1c3a54b5"
@@ -365,7 +372,7 @@ http-signature@~1.2.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
-iconv-lite@0.4.24, iconv-lite@~0.4.13:
+iconv-lite@0.4.24, iconv-lite@^0.4.19, iconv-lite@~0.4.13:
   version "0.4.24"
   resolved "http://registry.npm.taobao.org/iconv-lite/download/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
   integrity sha1-ICK0sl+93CHS9SSXSkdKr+czkIs=

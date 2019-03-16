@@ -1,7 +1,13 @@
+process.stdout = null;
 const Tesseract = require('tesseract.js');
 
 const verifyCodeParser = async src => {
-    const code = await Tesseract.recognize(src, { lang: 'eng' });
+    let code;
+    await Tesseract.recognize(src, {
+        tessedit_char_blacklist: `~!@#$%^&*()_+-=[]{}\  |;':",./<>? `
+    })
+        .then(data => (code = data))
+        .finally(() => Tesseract.terminate());
     return code.words[0].text;
 };
 
