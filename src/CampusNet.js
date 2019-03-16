@@ -23,9 +23,7 @@ const encrypt = password =>
 
 class CampusNet {
     async connection() {
-        const result = await got('https://www.baidu.com');
-        // console.log(result.body);
-        return result.body.includes('baidu');
+        return (await got('http://baidu.com')).body.includes('baidu')
     }
     /**
      *
@@ -50,12 +48,12 @@ class CampusNet {
             { form: true, body: form }
         );
         // console.log(loginResult.body);
-        const userIndex = JSON.parse(loginResult.body).userIndex;
-        if (!userIndex) {
+        const res = JSON.parse(loginResult.body);
+        if (!res.userIndex) {
             return false;
         }
         // console.log(userIndex);
-        return (await this.connection()) ? JSON.parse(loginResult.body) : false;
+        return (await this.connection()) ? res : false;
     }
     /**
      *

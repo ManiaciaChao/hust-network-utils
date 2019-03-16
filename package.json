@@ -6,9 +6,8 @@
     "author": "maniacata",
     "license": "MIT",
     "dependencies": {
-        "gbk-string": "^0.1.0",
+        "async-limiter": "^1.0.0",
         "got": "^9.6.0",
-        "jsdom": "^14.0.0",
         "tesseract.js": "^1.0.14",
         "tough-cookie": "^3.0.1"
     }

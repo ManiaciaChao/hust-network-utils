@@ -44,13 +44,15 @@ const clear = () => process.stdout.write('\033c');
 
 const checkAvailable = require('./checkAvailable');
 
-(async () => {
+const getOnlineDeviceNum = async () => {
     let num = false;
     while (num === false) {
         num = await checkAvailable(
-            { username: 'U2018XXXX', password: '12345678' },
+            { username: 'XXXXXXXXXX', password: 'XXXXXXXX' },
             null
         );
-    }
-    console.log(num);
-})();
+    };
+    return num
+}
+
+getOnlineDeviceNum().then(num=>console.log(`This user has ${num} online device(s)`))

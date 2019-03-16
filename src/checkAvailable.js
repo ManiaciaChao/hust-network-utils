@@ -13,11 +13,11 @@ const verifyCodeParser = require('./verifyCodeParser');
  * @param {number} timestamp
  */
 const generateFilename = userInfo => {
-    return `./${userInfo.username}.gif`;
+    return `./tmp/${userInfo.username}.gif`;
 };
 const processOnlineStr = str => {
     const tmp = str.split('<span class="big">')[2] || null;
-    return tmp ? tmp.split('</span>')[0] : false;
+    return tmp ? +tmp.split('</span>')[0].trim() : false;
 };
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 /**
@@ -30,46 +30,45 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
  * @param {*} config 
  */
 const checkAvailable = async (userInfo, config) => {
+    const url = ['http://myself.hust.edu.cn:8080/selfservice/', 'common/web/verifycode.jsp', 'module/scgroup/web/login_judge.jsf']
     // Set CookieJar
     const cookieJar = new CookieJar();
 
     // Get JSESSION_ID
-    const sidResult = await got('http://myself.hust.edu.cn:8080/selfservice/', {
+    const sidResult = await got(url[0], {
         cookieJar
     });
-    await got('http://myself.hust.edu.cn:8080/selfservice/entry.jsp', {
-        cookieJar
-    });
-    // console.log(sidResult.rawHeaders[13].split(';')[0]);
 
     // Get Verify Code
     const timestamp = Date.now();
     const query = new URLSearchParams([['timestamp', timestamp]]);
     const filename = generateFilename(userInfo);
-
-    // got.get(
-    //     'http://myself.hust.edu.cn:8080/selfservice/common/web/verifycode.jsp',
-    //     {
-    //         query,
-    //         cookieJar
-    //     }
-    // ).then(d => console.log(d.body));
-    // return;
     let verifyCode;
-    // console.log = () => {};
     while (!verifyCode || verifyCode.length !== 4) {
-        got.stream(
+        let stream = got.stream(
             'http://myself.hust.edu.cn:8080/selfservice/common/web/verifycode.jsp',
             {
                 query,
                 cookieJar
             }
         ).pipe(fs.createWriteStream(filename));
-        await sleep(100);
+        // let end = new Promise(function(resolve, reject) {
+        //     stream.on('end', () => resolve(hash.read()));
+        //     stream.on('error', reject); // or something like that. might need to close `hash`
+        // });
+        // await end;
+        await sleep(100)
         verifyCode = await verifyCodeParser(filename);
+
+        // let verifyCodeStream = got.stream(
+        //     'http://myself.hust.edu.cn:8080/selfservice/common/web/verifycode.jsp',
+        //     {
+        //         query,
+        //         cookieJar
+        //     })
+        // verifyCode = await verifyCodeParser(verifyCodeStream);
     }
 
-    // console.log(verifyCode);
     // Login
     const form = {
         name: userInfo.username,
@@ -82,10 +81,10 @@ const checkAvailable = async (userInfo, config) => {
         'http://myself.hust.edu.cn:8080/selfservice/module/scgroup/web/login_judge.jsf',
         { form: true, body: form, cookieJar }
     );
-    // console.log(loginResult.request.gotOptions.body);
-    // console.log(cookieJar);
+
+    // 
     const info = await got(
-        'http://myself.hust.edu.cn:8080/selfservice/module/webcontent/web/index_self_hk.jsf?',
+        'http://myself.hust.edu.cn:8080/selfservice/module/webcontent/web/index_self_hk.jsf',
         {
             headers: {
                 'Content-Type': 'charset=utf-8'
@@ -93,14 +92,10 @@ const checkAvailable = async (userInfo, config) => {
             cookieJar
         }
     );
-    // console.log(processOnlineStr(info.body));
-    // console.log(info.rawHeaders);
-    // fs.writeFileSync('show.html', info.body);
 
     // remove temporary file
     fs.unlinkSync(filename);
     return processOnlineStr(info.body);
-    // return loginResult.body.includes(userInfo.realname);
 };
 
 module.exports = checkAvailable;
