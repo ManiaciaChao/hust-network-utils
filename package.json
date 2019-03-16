@@ -6,7 +6,6 @@
     "author": "maniacata",
     "license": "MIT",
     "dependencies": {
-        "form-data": "^2.3.3",
         "got": "^9.6.0",
         "jsdom": "^14.0.0",
         "tesseract.js": "^1.0.14",
