@@ -5,14 +5,6 @@ const fs = require('fs');
 const CampusNet = require('./CampusNet');
 const accounts = require('../data/accounts.json');
 
-// CampusNet.login({ username: 'U201814857', password: '28150111' }).then(data =>
-//     console.log(data)
-// );
-
-// CampusNet.logout(
-//     '33326661386133666164623364313633346530303862653639393161666632335f31302e31342e3131362e3235325f55323031383134383537'
-// ).then(data => console.log(data));
-
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 /**
