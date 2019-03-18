@@ -1,5 +1,6 @@
 node_modules
-*.traineddata
-data/
+# *.traineddata
+data/availAccounts.backup.json
 yarn-error.log
-src/tmp/*
+tmp/*.gif
+scan_result*.csv
