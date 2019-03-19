@@ -5,7 +5,8 @@
     "author": "maniacata",
     "license": "MIT",
     "scripts": {
-        "scan": "cd ./src/ && node scan.js"
+        "scan": "cd ./src/ && node scan.js",
+        "clean": "rm ./scan_result_*.csv && rm ./tmp/*.gif"
     },
     "dependencies": {
         "got": "^9.6.0",
